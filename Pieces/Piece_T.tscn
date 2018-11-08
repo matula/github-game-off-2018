@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Pieces/Pieces.gd" type="Script" id=1]
+[ext_resource path="res://Pieces/Shapes/piece_t.png" type="Texture" id=2]
+
+[node name="Piece" type="KinematicBody2D" index="0"]
+
+position = Vector2( 416, 224 )
+input_pickable = true
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "Pickable", "Transform" ]
+
+[node name="Sprite" type="Sprite" parent="." index="0"]
+
+position = Vector2( 0, -32 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="1"]
+
+position = Vector2( 0, -64 )
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, -32, 32, -96, 32, -96, 96, 32, 96, 96, 96, 96, 32, 32, 32, 32, -32 )
+_sections_unfolded = [ "Transform" ]
+
+[connection signal="input_event" from="." to="." method="_on_Piece_input_event"]
+
+[connection signal="mouse_entered" from="." to="." method="_on_Piece_mouse_entered"]
+
+[connection signal="mouse_exited" from="." to="." method="_on_Piece_mouse_exited"]
+
+
