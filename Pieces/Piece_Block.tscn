@@ -3,15 +3,29 @@
 [ext_resource path="res://Pieces/Pieces.gd" type="Script" id=1]
 [ext_resource path="res://Pieces/Shapes/piece_block.png" type="Texture" id=2]
 
-[node name="Piece" type="KinematicBody2D" index="0"]
+[node name="Piece" type="RigidBody2D" index="0"]
 
 position = Vector2( 416, 224 )
 input_pickable = true
 collision_layer = 1
 collision_mask = 1
-collision/safe_margin = 0.08
+mode = 1
+mass = 1.0
+friction = 1.0
+bounce = 0.0
+gravity_scale = 1.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = true
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision", "Pickable", "Transform" ]
+_sections_unfolded = [ "Collision", "Pickable", "Transform", "collision" ]
 
 [node name="piece_block" type="Sprite" parent="." index="0"]
 
@@ -28,6 +42,10 @@ position = Vector2( 0, 7.62939e-06 )
 build_mode = 0
 polygon = PoolVector2Array( -32, -32, -32, 96, 96, 96, 96, -32 )
 _sections_unfolded = [ "Transform" ]
+
+[connection signal="body_entered" from="." to="." method="_on_Piece_body_entered"]
+
+[connection signal="body_shape_entered" from="." to="." method="_on_Piece_body_shape_entered"]
 
 [connection signal="input_event" from="." to="." method="_on_Piece_input_event"]
 

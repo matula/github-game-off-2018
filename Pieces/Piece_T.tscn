@@ -3,13 +3,27 @@
 [ext_resource path="res://Pieces/Pieces.gd" type="Script" id=1]
 [ext_resource path="res://Pieces/Shapes/piece_t.png" type="Texture" id=2]
 
-[node name="Piece" type="KinematicBody2D" index="0"]
+[node name="Piece" type="RigidBody2D"]
 
 position = Vector2( 416, 224 )
 input_pickable = true
 collision_layer = 1
 collision_mask = 1
-collision/safe_margin = 0.08
+mode = 1
+mass = 1.02041e-05
+friction = 1.0
+bounce = 0.0
+gravity_scale = 0.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = true
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Pickable", "Transform" ]
 

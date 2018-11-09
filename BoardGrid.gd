@@ -18,6 +18,7 @@ var piece_mid_small
 var piece_right_small
 var begin_scale = .3
 var piece_is_clicked = false
+var clicked_instance
 
 func _ready():
 	load_pieces()
