@@ -31,6 +31,7 @@ onready var pieces_array = [
 	preload("res://Pieces/Piece_S.tscn"),
 	preload("res://Pieces/Piece_T.tscn"),
 	preload("res://Pieces/Piece_L.tscn"),
+	preload("res://Pieces/Piece_L_back.tscn"),
 	preload("res://Pieces/Piece_Block.tscn"),
 	preload("res://Pieces/Piece_Plus.tscn")
 ]
