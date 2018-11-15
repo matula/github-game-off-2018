@@ -7,12 +7,12 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 544, 96 )
+extents = Vector2( 544, 64 )
 
 [sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
-extents = Vector2( 32, 192 )
+extents = Vector2( 32, 224 )
 
 [node name="Main" type="Node2D"]
 
@@ -27,9 +27,6 @@ angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="GridMask" index="0"]
 
@@ -52,7 +49,7 @@ __meta__ = {
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="GridMask" index="2"]
 
 visible = false
-position = Vector2( 512, 256 )
+position = Vector2( 544, 256 )
 shape = SubResource( 2 )
 __meta__ = {
 "_edit_lock_": true
@@ -61,7 +58,7 @@ __meta__ = {
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="GridMask" index="3"]
 
 visible = false
-position = Vector2( -512, 256 )
+position = Vector2( -544, 256 )
 shape = SubResource( 2 )
 __meta__ = {
 "_edit_lock_": true
@@ -69,7 +66,7 @@ __meta__ = {
 
 [node name="Polygon2D" type="Polygon2D" parent="GridMask" index="4"]
 
-polygon = PoolVector2Array( -512, -32, 512, -32, 512, 608, -512, 608, -512, 64, -480, 64, -480, 448, 480, 448, 480, 64, -512, 64 )
+polygon = PoolVector2Array( -544, -32, 544, -32, 544, 608, -544, 608, -544, 64, -480, 64, -480, 448, 480, 448, 480, 64, -480, 64, -512, 64, -544, 64 )
 uv = PoolVector2Array(  )
 color = Color( 0.273837, 0.377619, 0.460938, 1 )
 vertex_colors = PoolColorArray(  )
@@ -81,6 +78,9 @@ texture_scale = Vector2( 1, 1 )
 texture_rotation_degrees = 0.0
 invert_enable = false
 invert_border = 100.0
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="BoardGrid" type="TileMap" parent="." index="1"]
 
@@ -108,6 +108,8 @@ __meta__ = {
 }
 
 [connection signal="body_entered" from="GridMask" to="GridMask" method="_on_GridMask_body_entered"]
+
+[connection signal="body_exited" from="GridMask" to="GridMask" method="_on_GridMask_body_exited"]
 
 [connection signal="body_shape_entered" from="GridMask" to="GridMask" method="_on_GridMask_body_shape_entered"]
 

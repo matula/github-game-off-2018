@@ -1,13 +1,10 @@
 extends Area2D
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
+var grid_node
+var entered_shape
 
 func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
-	pass
+	grid_node = get_parent().get_child(1)
 
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
@@ -16,8 +13,12 @@ func _ready():
 
 
 func _on_GridMask_body_entered(body):
-	pass # replace with function body
+	entered_shape = grid_node.clicked_name
 
 
 func _on_GridMask_body_shape_entered(body_id, body, body_shape, area_shape):
 	pass # replace with function body
+
+
+func _on_GridMask_body_exited(body):
+	entered_shape = null

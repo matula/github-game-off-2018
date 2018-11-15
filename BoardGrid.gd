@@ -19,6 +19,8 @@ var piece_right_small
 var begin_scale = .3
 var piece_is_clicked = false
 var clicked_instance
+var clicked_name
+var mouse_over_name
 
 func _ready():
 	load_pieces()
