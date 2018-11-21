@@ -25,6 +25,7 @@ var x_sprite
 var x_text
 var x_size
 
+var base_node
 var parent_node
 var grid_mask_node
 var dropped_body
@@ -41,77 +42,79 @@ onready var pieces_array = [
 
 func _ready():
 	parent_node = get_parent()
-	grid_mask_node = parent_node.get_parent().get_child(0)
+	base_node = parent_node.get_parent()
+	grid_mask_node = base_node.get_node("GridMask")
 
 func _process(delta):
-	# get mouse location
-	mouse_position = get_global_mouse_position()
-	#print('mouse over: ' + str(parent_node.mouse_over_name))
-	#print('clicked: ' + str(parent_node.clicked_name))
-	
-	# right mouse clicked
-	if Input.is_mouse_button_pressed(BUTTON_RIGHT): 
-		if not is_small:
-			# we're over the piece
-			if parent_node.mouse_over_name == get_name():
-				# if we're not rotating already, rotate 90 deg
-				if is_rotating == false:
-					is_rotating = true
-					rotate(deg2rad(90))
-	else:
-		# stop rotate when unclicked
-		is_rotating = false
-	
-	# if this piece is small and you click once	
-	if is_small:
-		if Input.is_action_just_pressed('mouse_click'):
-			# and your mouse is ON the piece
-			if parent_node.mouse_over_name == get_name():
-				# make sure it's not already scaled up
-				if scale != Vector2(1,1):
-					# get the origina position of this piece while small
-					var small_position = position
-					# set a global var to track which piece was clicked
-					parent_node.clicked_name = get_name()
-					is_dropped = false
-					# set the scale to regular size
-					scale = Vector2(1,1)
-					# place it on top of everything
-					z_index = 1
-					parent_node.mouse_over_name = get_name()
-					# no longer small
-					is_small = false
-				
-					# add new small shape at the last shape's position
-					var index_random = round(rand_range(0,4))
-					var piece_small = pieces_array[index_random].instance()
-					piece_small.scale = Vector2(.3,.3)
-					piece_small.position = small_position
-					get_parent().add_child(piece_small)
-	else:
-		# code for the big piece				
-		# Left mouse button was pressed
-		if Input.is_mouse_button_pressed(BUTTON_LEFT):
-			# mouse is over the shape
-			if parent_node.mouse_over_name == get_name(): 
-				if parent_node.clicked_name != get_name():
-					parent_node.clicked_name = get_name()
-					is_clicked = true
-					is_dropped = false
-					print('just clicked: ' + get_name())
-		else:
-			is_clicked = false
+	if base_node.game_on:
+		# get mouse location
+		mouse_position = get_global_mouse_position()
+		#print('mouse over: ' + str(parent_node.mouse_over_name))
+		#print('clicked: ' + str(parent_node.clicked_name))
 		
-		if is_clicked:
-			# only move piece that matches global clicked id
-			if parent_node.clicked_name == get_name():
-				if parent_node.mouse_over_name == null:
-					parent_node.mouse_over_name = get_name()
-				# put clicked shape on top
-				move_piece()
+		# right mouse clicked
+		if Input.is_mouse_button_pressed(BUTTON_RIGHT): 
+			if not is_small:
+				# we're over the piece
+				if parent_node.mouse_over_name == get_name():
+					# if we're not rotating already, rotate 90 deg
+					if is_rotating == false:
+						is_rotating = true
+						rotate(deg2rad(90))
 		else:
-			if parent_node.clicked_name == get_name():
-				drop_piece()
+			# stop rotate when unclicked
+			is_rotating = false
+		
+		# if this piece is small and you click once	
+		if is_small:
+			if Input.is_action_just_pressed('mouse_click'):
+				# and your mouse is ON the piece
+				if parent_node.mouse_over_name == get_name():
+					# make sure it's not already scaled up
+					if scale != Vector2(1,1):
+						# get the origina position of this piece while small
+						var small_position = position
+						# set a global var to track which piece was clicked
+						parent_node.clicked_name = get_name()
+						is_dropped = false
+						# set the scale to regular size
+						scale = Vector2(1,1)
+						# place it on top of everything
+						z_index = 1
+						parent_node.mouse_over_name = get_name()
+						# no longer small
+						is_small = false
+					
+						# add new small shape at the last shape's position
+						var index_random = round(rand_range(0,4))
+						var piece_small = pieces_array[index_random].instance()
+						piece_small.scale = Vector2(.3,.3)
+						piece_small.position = small_position
+						get_parent().add_child(piece_small)
+		else:
+			# code for the big piece				
+			# Left mouse button was pressed
+			if Input.is_mouse_button_pressed(BUTTON_LEFT):
+				# mouse is over the shape
+				if parent_node.mouse_over_name == get_name(): 
+					if parent_node.clicked_name != get_name():
+						parent_node.clicked_name = get_name()
+						is_clicked = true
+						is_dropped = false
+						print('just clicked: ' + get_name())
+			else:
+				is_clicked = false
+			
+			if is_clicked:
+				# only move piece that matches global clicked id
+				if parent_node.clicked_name == get_name():
+					if parent_node.mouse_over_name == null:
+						parent_node.mouse_over_name = get_name()
+					# put clicked shape on top
+					move_piece()
+			else:
+				if parent_node.clicked_name == get_name():
+					drop_piece()
 			
 			
 

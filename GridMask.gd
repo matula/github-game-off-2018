@@ -4,7 +4,7 @@ var grid_node
 var entered_shape
 
 func _ready():
-	grid_node = get_parent().get_child(1)
+	grid_node = get_parent().get_node("BoardGrid")
 
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.

@@ -1,8 +1,14 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://GridMask.gd" type="Script" id=1]
-[ext_resource path="res://tilesets/grid_lines/grid_lines_tileset.tres" type="TileSet" id=2]
-[ext_resource path="res://BoardGrid.gd" type="Script" id=3]
+[ext_resource path="res://Main.gd" type="Script" id=1]
+[ext_resource path="res://Walls.gd" type="Script" id=2]
+[ext_resource path="res://Pieces/Shapes/piece_block.png" type="Texture" id=3]
+[ext_resource path="res://Pieces/Shapes/piece_s.png" type="Texture" id=4]
+[ext_resource path="res://Pieces/Shapes/piece_t.png" type="Texture" id=5]
+[ext_resource path="res://Pieces/Shapes/piece_plus.png" type="Texture" id=6]
+[ext_resource path="res://GridMask.gd" type="Script" id=7]
+[ext_resource path="res://tilesets/grid_lines/grid_lines_tileset.tres" type="TileSet" id=8]
+[ext_resource path="res://BoardGrid.gd" type="Script" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -14,9 +20,310 @@ extents = Vector2( 544, 64 )
 custom_solver_bias = 0.0
 extents = Vector2( 32, 224 )
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" index="0"]
 
-[node name="GridMask" type="Area2D" parent="." index="0"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_vertical_guides_": [ 512.0 ]
+}
+
+[node name="Walls" type="Node2D" parent="." index="0"]
+
+editor/display_folded = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="LeftWall" type="RigidBody2D" parent="Walls" index="0"]
+
+editor/display_folded = true
+position = Vector2( -256, 0 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+mode = 3
+mass = 1.02041e-05
+friction = 1.0
+bounce = 0.0
+gravity_scale = 0.0
+custom_integrator = false
+continuous_cd = 1
+contacts_reported = 1
+contact_monitor = true
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
+_sections_unfolded = [ "Applied Forces" ]
+
+[node name="Row1" type="Polygon2D" parent="Walls/LeftWall" index="0"]
+
+position = Vector2( -128, 0 )
+polygon = PoolVector2Array( 32, 96, 544, 96, 544, 160, 32, 160 )
+uv = PoolVector2Array(  )
+color = Color( 1, 1, 1, 0.392157 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+
+[node name="Row2" type="Polygon2D" parent="Walls/LeftWall" index="1"]
+
+position = Vector2( -192, 64 )
+polygon = PoolVector2Array( 32, 96, 544, 96, 544, 160, 32, 160 )
+uv = PoolVector2Array(  )
+color = Color( 1, 1, 1, 0.392157 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+
+[node name="Row3" type="Polygon2D" parent="Walls/LeftWall" index="2"]
+
+position = Vector2( -192, 128 )
+polygon = PoolVector2Array( 32, 96, 544, 96, 544, 160, 32, 160 )
+uv = PoolVector2Array(  )
+color = Color( 1, 1, 1, 0.392157 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+
+[node name="Row4" type="Polygon2D" parent="Walls/LeftWall" index="3"]
+
+position = Vector2( -256, 192 )
+polygon = PoolVector2Array( 32, 96, 544, 96, 544, 160, 32, 160 )
+uv = PoolVector2Array(  )
+color = Color( 1, 1, 1, 0.392157 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+
+[node name="Row5" type="Polygon2D" parent="Walls/LeftWall" index="4"]
+
+position = Vector2( -192, 256 )
+polygon = PoolVector2Array( 32, 96, 544, 96, 544, 160, 32, 160 )
+uv = PoolVector2Array(  )
+color = Color( 1, 1, 1, 0.392157 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+
+[node name="Row6" type="Polygon2D" parent="Walls/LeftWall" index="5"]
+
+position = Vector2( -192, 320 )
+polygon = PoolVector2Array( 32, 96, 544, 96, 544, 160, 32, 160 )
+uv = PoolVector2Array(  )
+color = Color( 1, 1, 1, 0.392157 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/LeftWall" index="6"]
+
+build_mode = 0
+polygon = PoolVector2Array( 416, 96, 416, 160, 352, 160, 352, 288, 288, 288, 288, 352, 352, 352, 352, 480, -96, 480, -96, 96 )
+
+[node name="RightWall" type="RigidBody2D" parent="Walls" index="1"]
+
+position = Vector2( 1088, 0 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+mode = 3
+mass = 1.02041e-05
+friction = 1.0
+bounce = 0.0
+gravity_scale = 0.0
+custom_integrator = false
+continuous_cd = 1
+contacts_reported = 1
+contact_monitor = true
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
+
+[node name="Row1" type="Polygon2D" parent="Walls/RightWall" index="0"]
+
+position = Vector2( -128, 0 )
+polygon = PoolVector2Array( 32, 96, 544, 96, 544, 160, 32, 160 )
+uv = PoolVector2Array(  )
+color = Color( 1, 1, 1, 0.392157 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+
+[node name="Row2" type="Polygon2D" parent="Walls/RightWall" index="1"]
+
+position = Vector2( -256, 64 )
+polygon = PoolVector2Array( 32, 96, 544, 96, 544, 160, 32, 160 )
+uv = PoolVector2Array(  )
+color = Color( 1, 1, 1, 0.392157 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+
+[node name="Row3" type="Polygon2D" parent="Walls/RightWall" index="2"]
+
+position = Vector2( -256, 128 )
+polygon = PoolVector2Array( 32, 96, 544, 96, 544, 160, 32, 160 )
+uv = PoolVector2Array(  )
+color = Color( 1, 1, 1, 0.392157 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+
+[node name="Row4" type="Polygon2D" parent="Walls/RightWall" index="3"]
+
+position = Vector2( -256, 192 )
+polygon = PoolVector2Array( 32, 96, 544, 96, 544, 160, 32, 160 )
+uv = PoolVector2Array(  )
+color = Color( 1, 1, 1, 0.392157 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+
+[node name="Row5" type="Polygon2D" parent="Walls/RightWall" index="4"]
+
+position = Vector2( -192, 256 )
+polygon = PoolVector2Array( 32, 96, 544, 96, 544, 160, 32, 160 )
+uv = PoolVector2Array(  )
+color = Color( 1, 1, 1, 0.392157 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+
+[node name="Row6" type="Polygon2D" parent="Walls/RightWall" index="5"]
+
+position = Vector2( -256, 320 )
+polygon = PoolVector2Array( 32, 96, 544, 96, 544, 160, 32, 160 )
+uv = PoolVector2Array(  )
+color = Color( 1, 1, 1, 0.392157 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/RightWall" index="6"]
+
+build_mode = 0
+polygon = PoolVector2Array( -96, 96, -96, 160, -224, 160, -224, 352, -160, 352, -160, 416, -224, 416, -224, 480, 288, 480, 288, 96 )
+
+[node name="Node2D" type="Node2D" parent="Walls" index="2"]
+
+editor/display_folded = true
+visible = false
+
+[node name="piece_block" type="Sprite" parent="Walls/Node2D" index="0"]
+
+position = Vector2( 480, 160 )
+texture = ExtResource( 3 )
+
+[node name="piece_s" type="Sprite" parent="Walls/Node2D" index="1"]
+
+position = Vector2( 449, 258 )
+rotation = -1.56065
+texture = ExtResource( 4 )
+
+[node name="piece_t" type="Sprite" parent="Walls/Node2D" index="2"]
+
+position = Vector2( 386, 352.5 )
+rotation = -3.1415
+texture = ExtResource( 5 )
+
+[node name="piece_t2" type="Sprite" parent="Walls/Node2D" index="3"]
+
+position = Vector2( 449.006, 415.494 )
+rotation = -6.27773
+texture = ExtResource( 5 )
+
+[node name="piece_plus" type="Sprite" parent="Walls/Node2D" index="4"]
+
+position = Vector2( 576, 384 )
+texture = ExtResource( 6 )
+
+[node name="Timer" type="Timer" parent="Walls" index="3"]
+
+process_mode = 1
+wait_time = 3.0
+one_shot = false
+autostart = true
+
+[node name="GridMask" type="Area2D" parent="." index="1"]
 
 position = Vector2( 512, 32 )
 input_pickable = true
@@ -26,7 +333,10 @@ linear_damp = 0.1
 angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
-script = ExtResource( 1 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="GridMask" index="0"]
 
@@ -82,10 +392,10 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="BoardGrid" type="TileMap" parent="." index="1"]
+[node name="BoardGrid" type="TileMap" parent="." index="2"]
 
 mode = 0
-tile_set = ExtResource( 2 )
+tile_set = ExtResource( 8 )
 cell_size = Vector2( 64, 64 )
 cell_quadrant_size = 16
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
@@ -101,16 +411,84 @@ collision_mask = 1
 occluder_light_mask = 1
 format = 1
 tile_data = PoolIntArray( 65536, 0, 0, 65537, 0, 0, 65538, 0, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 65544, 0, 0, 65545, 0, 0, 65546, 0, 0, 65547, 0, 0, 65548, 0, 0, 65549, 0, 0, 65550, 0, 0, 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0, 131077, 0, 0, 131078, 0, 0, 131079, 0, 0, 131080, 0, 0, 131081, 0, 0, 131082, 0, 0, 131083, 0, 0, 131084, 0, 0, 131085, 0, 0, 131086, 0, 0, 196608, 0, 0, 196609, 0, 0, 196610, 0, 0, 196611, 0, 0, 196612, 0, 0, 196613, 0, 0, 196614, 0, 0, 196615, 0, 0, 196616, 0, 0, 196617, 0, 0, 196618, 0, 0, 196619, 0, 0, 196620, 0, 0, 196621, 0, 0, 196622, 0, 0, 262144, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 262148, 0, 0, 262149, 0, 0, 262150, 0, 0, 262151, 0, 0, 262152, 0, 0, 262153, 0, 0, 262154, 0, 0, 262155, 0, 0, 262156, 0, 0, 262157, 0, 0, 262158, 0, 0, 327680, 0, 0, 327681, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 327688, 0, 0, 327689, 0, 0, 327690, 0, 0, 327691, 0, 0, 327692, 0, 0, 327693, 0, 0, 327694, 0, 0, 393216, 0, 0, 393217, 0, 0, 393218, 0, 0, 393219, 0, 0, 393220, 0, 0, 393221, 0, 0, 393222, 0, 0, 393223, 0, 0, 393224, 0, 0, 393225, 0, 0, 393226, 0, 0, 393227, 0, 0, 393228, 0, 0, 393229, 0, 0, 393230, 0, 0 )
-script = ExtResource( 3 )
+script = ExtResource( 9 )
 _sections_unfolded = [ "Cell", "Collision" ]
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="GameOver" type="Polygon2D" parent="." index="3"]
+
+visible = false
+polygon = PoolVector2Array( 32, 96, 992, 96, 992, 480, 32, 480 )
+uv = PoolVector2Array(  )
+color = Color( 0, 0, 0, 0.48502 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+_sections_unfolded = [ "Visibility" ]
+
+[node name="Label" type="Label" parent="GameOver" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 480.0
+margin_top = 256.0
+margin_right = 576.0
+margin_bottom = 288.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Game Over!"
+uppercase = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Button" type="Button" parent="GameOver" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 448.0
+margin_top = 352.0
+margin_right = 608.0
+margin_bottom = 384.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Restart"
+flat = false
+align = 1
+
+[connection signal="timeout" from="Walls/Timer" to="Walls" method="_on_Timer_timeout"]
 
 [connection signal="body_entered" from="GridMask" to="GridMask" method="_on_GridMask_body_entered"]
 
 [connection signal="body_exited" from="GridMask" to="GridMask" method="_on_GridMask_body_exited"]
 
 [connection signal="body_shape_entered" from="GridMask" to="GridMask" method="_on_GridMask_body_shape_entered"]
+
+[connection signal="pressed" from="GameOver/Button" to="." method="_on_Button_pressed"]
 
 
